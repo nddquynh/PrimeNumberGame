@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/interface/interface.css">
+    <link rel="stylesheet" href="./ranking.css">
+
+    <title>Ranking</title>
+</head>
+
+<body>
+    <h1 class="ranking-board-title">Bảng xếp hạng</h1>
+    <div class="ranking-board-container">
+        <div class="ranking-container">
+            <h1>Easy</h1>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Người chơi</th>
+                        <th>Thứ hạng</th>
+                        <th>Tên người chơi</th>
+                        <th>Điểm số</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <tr>
+                        <td colspan="4" class="no-data">Chưa có dữ liệu xếp hạng.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-group">
+                <button onclick="window.location.href='/src/pages/Home/home.html'">Quay lại</button>
+            </div>
+        </div>
+        <script type="module" src="./ranking.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ Trò Chơi</title>
+    <link rel="stylesheet" href="home.css" />
+</head>
+
+<body>
+
+    <body>
+        <div class="outer-container">
+            <div class="home-container">
+                <h1 class="welcome-text">Chào mừng đến với<br>Prime Numbers Game</h1>
+
+                <div class="slider-wrapper">
+                    <div class="slider-track" id="sliderTrack">
+                        <div class="slide-banner text-slide">
+                            <h1>HOW TO PLAY</h1>
+                            <p>Chọn các số nguyên tố chính xác để ghi điểm.</p>
+                            <p>Định ngĩa số nguyên tố: Là số chỉ chia hết cho 1 và chính nó.</p>
+                        </div>
+
+                        <div class="slide-banner text-slide">
+                            <h1>TIME AND LEVEL</h1>
+                            <p>Chế độ Dễ: 90s, Bình thường: 60s, Khó: 45s. Càng nhanh càng tốt!</p>
+                        </div>
+
+                        <div class="slide-banner text-slide">
+                            <h1>NOTE</h1>
+                            <p>Chọn sai số sẽ bị trừ 5 điểm. Chọn đúng bạn sẽ được cộng 15 điểm</p>
+                        </div>
+                    </div>
+                    <button class="slider-control left" onclick="prevSlide()">❮</button>
+                    <button class="slider-control right" onclick="nextSlide()">❯</button>
+                </div>
+
+                <div class="button-group">
+                    <button onclick="startGame()">Bắt đầu chơi</button>
+                    <button onclick="viewRanking()">Xem bảng xếp hạng</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+    <script src="./home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hãy nhập tên để bắt đầu</title>
+    <link rel="stylesheet" href="/src/interface/interface.css">
+</head>
+
+<body>
+    <div class="login-container">
+  <div class="form-inner">
+    <h2>Hãy nhập tên để bắt đầu</h2>
+    <div class="error-msg" id="error-msg"></div>
+
+     <!-- Avatar hiển thị và trò chuyện -->
+        <div class="avatar-chat-wrapper" onclick="openAvatarModal()">
+        <div class="avatar-container">
+            <div class="chat-bubble" id="chat-bubble">👋 Chào bạn, tôi là Tý</div>
+            <div id="avatar-svg"></div>
+        </div>
+        </div>
+
+        <!-- MODAL chọn avatar -->
+        <div id="avatar-modal" class="avatar-modal">
+        <div class="avatar-modal-content">
+            <h3>Chọn con giáp:</h3>
+            <div class="zodiac-grid" id="zodiac-grid"></div>
+            <button onclick="applyAvatarSelection()">OK</button>
+        </div>
+        </div>
+
+    <input type="text" id="username" placeholder="Nhập tên của bạn" />
+
+    <div class="difficulty-select">
+      <label for="difficulty">🎮 Chọn cấp độ:</label>
+      <select id="difficulty">
+        <option value="easy">Dễ</option>
+        <option value="normal" selected>Bình thường</option>
+        <option value="hard">Khó</option>
+      </select>
+    </div>
+
+    <button onclick="startGame()">Bắt đầu</button>
+  </div>
+</div>
+
+    <script type="module" src="./login.js"></script>
+</body>
+
+</html>
