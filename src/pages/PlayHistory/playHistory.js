@@ -69,6 +69,10 @@ window.closeModal = function closeModal() {
     document.getElementById('detail-modal').style.display = 'none';
 }
 
+
+
+
+
 window.clearLeaderboard = function clearLeaderboard() {
     if (confirm("Bạn có chắc muốn xóa bảng xếp hạng?")) {
         localStorage.removeItem('computerId');
