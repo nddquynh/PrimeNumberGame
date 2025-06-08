@@ -1,40 +1,66 @@
 import { fetchListUserGameHistory$ } from "../../controllers/userGameHistory.js";
 import { zodiacSVGs } from "../../model/avatarAnimal.js";
 
+// Slider logic
+const track = document.getElementById("sliderTrack");
+let index = 0;
+const totalSlides = track.children.length;
+
+function updateSlider() {
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+window.nextSlide = function () {
+  index = (index + 1) % totalSlides;
+  updateSlider();
+};
+
+window.prevSlide = function () {
+  index = (index - 1 + totalSlides) % totalSlides;
+  updateSlider();
+};
+
+// Gọi API và hiển thị bảng theo chế độ
 const listUserGamePlay = await fetchListUserGameHistory$();
-console.log(listUserGamePlay);
-displayTopUser();
+displayLeaderboard();
 
-async function displayTopUser() {
-    const leaderboardBody = document.getElementById('leaderboard-body');
-    if (listUserGamePlay.length > 0) {
-        leaderboardBody.innerHTML = ''; // Xóa thông báo “Chưa có dữ liệu”
+function renderRanking(users, containerId) {
+  const container = document.getElementById(containerId);
+  if (!users || users.length === 0) {
+    container.innerHTML = `<tr><td colspan="4" class="no-data">Không có dữ liệu</td></tr>`;
+    return;
+  }
 
-        listUserGamePlay.sort((a, b) => b.score - a.score);
+  users.sort((a, b) => b.score - a.score);
+  container.innerHTML = "";
 
-        listUserGamePlay.forEach((users, index) => {
-            const rowDOM = document.createElement('tr');
+  users.forEach((user, i) => {
+    const row = document.createElement("tr");
 
-            const avatarCellDOM = document.createElement('td');
-            avatarCellDOM.innerHTML = zodiacSVGs[users.avatar];
-            avatarCellDOM.className = `avatar-dom`;
+    const avatarCell = document.createElement("td");
+    avatarCell.innerHTML = zodiacSVGs[user.avatar] || "❓";
+    avatarCell.className = "avatar-dom";
 
-            const rankCellDOM = document.createElement('td');
-            rankCellDOM.textContent = index + 1;
+    const rankCell = document.createElement("td");
+    rankCell.textContent = i + 1;
 
-            const nameCellDOM = document.createElement('td');
-            nameCellDOM.textContent = users.name;
+    const nameCell = document.createElement("td");
+    nameCell.textContent = user.name;
 
+    const scoreCell = document.createElement("td");
+    scoreCell.textContent = user.score;
 
-            const scoreCell = document.createElement('td');
-            scoreCell.textContent = users.score;
+    row.appendChild(avatarCell);
+    row.appendChild(rankCell);
+    row.appendChild(nameCell);
+    row.appendChild(scoreCell);
 
-            rowDOM.appendChild(avatarCellDOM);
-            rowDOM.appendChild(rankCellDOM);
-            rowDOM.appendChild(nameCellDOM);
-            rowDOM.appendChild(scoreCell);
+    container.appendChild(row);
+  });
+}
 
-            leaderboardBody.appendChild(rowDOM);
-        });
-    }
+function displayLeaderboard() {
+  renderRanking(listUserGamePlay.filter(u => u.rankingLevel === "easy"), "easy-ranking");
+  renderRanking(listUserGamePlay.filter(u => u.rankingLevel === "normal"), "normal-ranking");
+  renderRanking(listUserGamePlay.filter(u => u.rankingLevel === "hard"), "hard-ranking");
 }

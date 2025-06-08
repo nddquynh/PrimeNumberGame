@@ -1,41 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/interface/interface.css">
-    <link rel="stylesheet" href="./ranking.css">
-
-    <title>Ranking</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bảng Xếp Hạng</title>
+  <link rel="stylesheet" href="/src/interface/interface.css" />
+  <link rel="stylesheet" href="./ranking.css" />
 </head>
 
 <body>
-    <h1 class="ranking-board-title">Bảng xếp hạng</h1>
-    <div class="ranking-board-container">
-        <div class="ranking-container">
-            <h1>Easy</h1>
-            <table id="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>Người chơi</th>
-                        <th>Thứ hạng</th>
-                        <th>Tên người chơi</th>
-                        <th>Điểm số</th>
-                    </tr>
-                </thead>
-                <tbody id="leaderboard-body">
-                    <tr>
-                        <td colspan="4" class="no-data">Chưa có dữ liệu xếp hạng.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="button-group">
-                <button onclick="window.location.href='/src/pages/Home/home.html'">Quay lại</button>
-            </div>
-        </div>
-        <script type="module" src="./ranking.js"></script>
-</body>
+  <div class="outer-container">
+    <div class="home-container">
+      <h1 class="welcome-text">Bảng xếp hạng</h1>
 
+      <!-- Slider -->
+      <div class="slider-wrapper">
+        <div class="slider-track" id="sliderTrack">
+          <!-- Easy -->
+          <div class="slide-banner text-slide">
+            <h2>Chế độ DỄ</h2>
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                <th></th>
+                  <th>Hạng</th>
+                  <th>Người chơi</th>
+                  <th>Điểm</th>
+                </tr>
+              </thead>
+              <tbody id="easy-ranking">
+                <tr><td colspan="3">Đang tải...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Normal -->
+          <div class="slide-banner text-slide">
+            <h2>Chế độ BÌNH THƯỜNG</h2>
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Hạng</th>
+                  <th>Người chơi</th>
+                  <th>Điểm</th>
+                </tr>
+              </thead>
+              <tbody id="normal-ranking">
+                <tr><td colspan="3">Đang tải...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Hard -->
+          <div class="slide-banner text-slide">
+            <h2>Chế độ KHÓ</h2>
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th></th>  
+                  <th>Hạng</th>
+                  <th>Người chơi</th>
+                  <th>Điểm</th>
+                </tr>
+              </thead>
+              <tbody id="hard-ranking">
+                <tr><td colspan="3">Đang tải...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Nút chuyển -->
+        <button class="slider-control left" onclick="prevSlide()">❮</button>
+        <button class="slider-control right" onclick="nextSlide()">❯</button>
+      </div>
+
+      <div class="button-group">
+        <button onclick="window.location.href='/src/pages/Home/home.html'">Quay lại</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional Modal -->
+  <div id="detail-modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Chi tiết lượt chơi</h2>
+      <p id="detail-name"></p>
+      <p id="detail-level"></p>
+      <p id="detail-score"></p>
+      <button onclick="closeModal()">Đóng</button>
+    </div>
+  </div>
+
+  <script type="module" src="./ranking.js"></script>
+  <script>
+    function closeModal() {
+      document.getElementById('detail-modal').style.display = 'none';
+    }
+  </script>
+</body>
 </html>
