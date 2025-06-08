@@ -18,7 +18,8 @@ async function postUserGameHistory$(gameHistory) {
                 name: gameHistory.name,
                 score: gameHistory.score,
                 rankingLevel: gameHistory.rankingLevel,
-                avatar: gameHistory.avatar
+                avatar: gameHistory.avatar,
+                deviceId: gameHistory.deviceId
             })
         });
         return await reponse.json();
@@ -38,7 +39,8 @@ async function updatedScoreGamePlay$(userId, gameHistory) {
                 name: gameHistory.name,
                 score: gameHistory.score,
                 rankingLevel: gameHistory.rankingLevel,
-                avatar: gameHistory.avatar
+                avatar: gameHistory.avatar,
+                deviceId: gameHistory.deviceId
             })
         });
         return await reponse.json();

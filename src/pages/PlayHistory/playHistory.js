@@ -1,60 +1,101 @@
 import { fetchListUserGameHistory$, postUserGameHistory$, updatedScoreGamePlay$ } from "../../controllers/userGameHistory.js";
 
-const leaderboardBody = document.getElementById('leaderboard-body');
-const leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
-const levelRanking = localStorage.getItem('gameDifficulty');
-const computerId = localStorage.getItem('computerId');
-const avatarUser = localStorage.getItem('avatar');
+async function syncLeaderboard() {
+  const listUserGamePlay = await fetchListUserGameHistory$();
 
+  const leaderboardBody = document.getElementById('leaderboard-body');
+  const leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+  const levelRanking = localStorage.getItem('gameDifficulty');
+  const uploadIds = JSON.parse(localStorage.getItem('uploadIds') || '{}');
+  const computerId = uploadIds[levelRanking];
+  const quizScoreLocal = localStorage.getItem('quizScore');
+  const avatarUser = localStorage.getItem('avatar');
+  const deviceId = localStorage.getItem('visitorId');
 
-if (leaderboard.length > 0) {
-  leaderboardBody.innerHTML = ''; // Xóa thông báo "Chưa có dữ liệu"
-  leaderboard.sort((a, b) => b.score - a.score); // Sắp xếp theo điểm giảm dần
-  leaderboard.forEach((entry, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${entry.name}</td>
-                        <td>${entry.score}</td>
-                        <td><span class="detail-link" data-index="${index}">...</span></td>
-                    `;
-    leaderboardBody.appendChild(row);
-  });
+  if (leaderboard.length === 0) {
+    return;
+  }
+
+  leaderboardBody.innerHTML = '';
+  leaderboard
+    .sort((a, b) => b.score - a.score)
+    .forEach((entry, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${entry.name}</td>
+        <td>${entry.score}</td>
+        <td><span class="detail-link" data-index="${index}">...</span></td>
+      `;
+      leaderboardBody.appendChild(row);
+    });
 
   const topUser = leaderboard[0];
-  const updatedTopUser = {
+  const payload = {
     name: topUser.name,
-    score: topUser.score,
+    score: quizScoreLocal,
     rankingLevel: levelRanking,
-    avatar: avatarUser
+    avatar: avatarUser,
+    deviceId
+  };
+  console.log('Payload to sync:', payload);
+
+  function hasRecordForThisDeviceAndMode() {
+    return listUserGamePlay.some(u =>
+      u.deviceId === deviceId &&
+      u.rankingLevel === levelRanking
+    );
   }
+
   if (!computerId) {
     try {
-      const createdUser = await postUserGameHistory$(updatedTopUser);
-      localStorage.setItem('computerId', createdUser.id);
-      await fetchListUserGameHistory$();
-    } catch (error) {
-      console.log("POST highest user score get error");
+      const created = await postUserGameHistory$(payload);
+      uploadIds[levelRanking] = created.id;
+      localStorage.setItem('uploadIds', JSON.stringify(uploadIds));
+      console.log(`Created new record [${levelRanking}] id=${created.id}`);
+    } catch (err) {
+      console.error('Error POST new record:', err);
     }
-  } else {
+  }
+  else if (!hasRecordForThisDeviceAndMode()) {
     try {
-      await updatedScoreGamePlay$(computerId, updatedTopUser);
-      await fetchListUserGameHistory$();
-    } catch (error) {
-      console.log("UPDATE highest user score get error");
+      const created = await postUserGameHistory$(payload);
+      uploadIds[levelRanking] = created.id;
+      localStorage.setItem('uploadIds', JSON.stringify(uploadIds));
+      console.log(`Created new record for this mode [${levelRanking}] id=${created.id}`);
+    } catch (err) {
+      console.error('Error POST missing record:', err);
+    }
+  }
+  else {
+    const existing = listUserGamePlay.find(u =>
+      u.deviceId === deviceId &&
+      u.rankingLevel === levelRanking
+    );
+    if (topUser.score > existing.score) {
+      try {
+        await updatedScoreGamePlay$(existing.id, payload);
+        console.log(`Updated record id=${existing.id} to score=${topUser.score}`);
+      } catch (err) {
+        console.error('Error PUT update record:', err);
+      }
+    } else {
+      console.log('Score không thay đổi, không sync');
     }
   }
 
-  // Xử lý sự kiện nhấp vào dấu "..."
+  // 7. Gắn event cho các nút “...”
   document.querySelectorAll('.detail-link').forEach(link => {
     link.addEventListener('click', () => {
-      const index = link.getAttribute('data-index');
+      const index = parseInt(link.dataset.index, 10);
       const entry = leaderboard[index];
       showDetailModal(entry, index);
     });
   });
-
 }
+
+syncLeaderboard();
+
 
 function showDetailModal(entry) {
   const modal = document.getElementById('detail-modal');
