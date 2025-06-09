@@ -19,7 +19,7 @@ function prevSlide() {
 function goToNamePage() {
     const level = document.getElementById('difficulty').value;
     localStorage.setItem('gameDifficulty', level);
-    window.location.href = 'Index.html';
+    window.location.href = 'index.html';
 }
 
 function startGame() {

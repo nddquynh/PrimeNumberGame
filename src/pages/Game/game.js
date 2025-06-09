@@ -260,7 +260,7 @@ async function handleEndGame() {
     localStorage.setItem('quizScore', currentScore);
 
     // Chuyển trang 
-    window.location.href = '/src/pages/PlayHistory/playHistory.html';
+    window.location.href = '../../pages/PlayHistory/playHistory.html';
 }
 
 // Xử lý nút Chơi lại
