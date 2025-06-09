@@ -113,7 +113,7 @@ window.closeModal = function closeModal() {
 }
 
 window.clearLeaderboard = function clearLeaderboard() {
-  if (confirm("Bạn có chắc muốn xóa bảng xếp hạng?")) {
+  if (confirm("Bạn có chắc muốn xóa lịch sử xếp hạng?")) {
     localStorage.removeItem('computerId');
     localStorage.removeItem('gameDifficulty');
     localStorage.removeItem('leaderboard');
