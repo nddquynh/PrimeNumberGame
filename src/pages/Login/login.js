@@ -1,4 +1,9 @@
+import { getOrCreateDeviceId } from "../../controllers/deviceIdControllers.js";
+import { fetchListUserGameHistory$ } from "../../controllers/userGameHistory.js";
 import { zodiacSVGs } from "../../model/avatarAnimal.js";
+
+checkDeviceIdLogedIn();
+
 let selectedZodiac = 'Tý';
 
 function generateZodiacGrid() {
@@ -12,24 +17,45 @@ function generateZodiacGrid() {
     div.title = zodiac;
 
     if (zodiac === selectedZodiac) {
-        div.classList.add('selected'); // ✅ Đánh dấu con chuột mặc định bị nhạt
+      div.classList.add('selected'); // ✅ Đánh dấu con chuột mặc định bị nhạt
     }
 
     div.onclick = () => {
-    selectedZodiac = zodiac;
+      selectedZodiac = zodiac;
 
-    // Bỏ lớp selected khỏi tất cả các avatar
-    document.querySelectorAll('.zodiac-item').forEach(item => {
+      // Bỏ lớp selected khỏi tất cả các avatar
+      document.querySelectorAll('.zodiac-item').forEach(item => {
         item.classList.remove('selected');
-    });
+      });
 
-    // Thêm lớp selected vào avatar được chọn
-    div.classList.add('selected');
-};
+      // Thêm lớp selected vào avatar được chọn
+      div.classList.add('selected');
+    };
 
     zodiacGrid.appendChild(div);
   });
 }
+
+async function checkDeviceIdLogedIn() {
+  const userNameInputDOM = document.getElementById('username');
+
+  const deviceIdLocal = localStorage.getItem('visitorId');
+  const deviceIdLogedIn = await getUserByDeviceId(deviceIdLocal);
+
+  if (deviceIdLogedIn && deviceIdLogedIn.name != undefined) {
+    userNameInputDOM.readOnly = true;
+    userNameInputDOM.value = deviceIdLogedIn.name;
+  }
+
+  console.log(deviceIdLogedIn);
+
+}
+
+async function getUserByDeviceId(deviceIdLocal) {
+  const listUserGamePlay = await fetchListUserGameHistory$();
+  return listUserGamePlay.find((users) => users.deviceId == deviceIdLocal)
+}
+
 
 window.startGame = function startGame() {
   const username = document.getElementById('username').value.trim();
@@ -42,7 +68,7 @@ window.startGame = function startGame() {
   localStorage.setItem('quizName', username);
   localStorage.setItem('gameDifficulty', difficulty);
   localStorage.setItem('avatar', selectedZodiac);
-  window.location.href = '/src/pages/Game/game.html';
+  getOrCreateDeviceId();
 }
 
 window.updateAvatar = function updateAvatar() {

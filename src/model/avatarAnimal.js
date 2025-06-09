@@ -1,5 +1,5 @@
 export const zodiacSVGs = {
-    'Tý': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom" role="img" aria-labelledby="title-mouse2">
+  'Tý': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom" role="img" aria-labelledby="title-mouse2">
   <title id="title-mouse2">Mouse Face</title>
   
   <!-- Đầu tròn màu xanh xám, viền đen dày -->
@@ -26,7 +26,7 @@ export const zodiacSVGs = {
 </svg>
 `,
 
-    'Sửu': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Sửu': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
   <!-- Mặt -->
   <circle id="face" cx="32" cy="32" r="28" fill="#8B5E3C" stroke="#5A3A1A" stroke-width="3"/>
 
@@ -52,9 +52,9 @@ export const zodiacSVGs = {
   <path d="M26 52 Q32 56 38 52" stroke="#4a2d15" stroke-width="2" fill="none" stroke-linecap="round"/>
 </svg>`
 
-    ,
+  ,
 
-    'Dần': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Dần': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
     <!-- Mặt -->
     <circle id="face" cx="32" cy="32" r="28" fill="#fcbf49" stroke="#000" stroke-width="3"/>
 
@@ -97,7 +97,7 @@ export const zodiacSVGs = {
     <path d="M52 32 Q46 30 50 36" stroke="#000" stroke-width="2"/>
 </svg>`,
 
-    'Mão': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Mão': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
   <!-- Mặt mèo tròn mập -->
   <circle id="face" cx="32" cy="32" r="28" fill="#fcbf49" stroke="#000" stroke-width="2"/>
 
@@ -149,9 +149,9 @@ export const zodiacSVGs = {
   <path d="M22 14 L24 16" stroke="#cc8400" stroke-width="2"/>
   <path d="M42 14 L40 16" stroke="#cc8400" stroke-width="2"/>
 </svg>`
-    ,
+  ,
 
-    'Thìn': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Thìn': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
   <!-- Đầu rồng mập -->
   <circle id="face" cx="32" cy="32" r="28" fill="#7ed957" stroke="#2e8b57" stroke-width="2"/>
 
@@ -187,9 +187,9 @@ export const zodiacSVGs = {
   <circle cx="20" cy="38" r="2" fill="#a2f27d"/>
   <circle cx="44" cy="38" r="2" fill="#a2f27d"/>
 </svg>`
-    ,
+  ,
 
-    'Tỵ': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Tỵ': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
   <!-- Thân -->
   <circle id="face" cx="32" cy="32" r="26" fill="#a3d977" stroke="#4caf50" stroke-width="2"/>
 
@@ -221,9 +221,9 @@ export const zodiacSVGs = {
   <circle cx="20" cy="36" r="2" fill="#ffc0cb"/>
   <circle cx="44" cy="36" r="2" fill="#ffc0cb"/>
 </svg>`
-    ,
+  ,
 
-    'Ngọ': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Ngọ': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
   <!-- Mặt tròn lớn hơn -->
   <circle id="face" cx="32" cy="32" r="28" fill="#e3b982" stroke="#9b643d" stroke-width="2"/>
 
@@ -258,9 +258,9 @@ export const zodiacSVGs = {
   <ellipse cx="38" cy="58" rx="6" ry="4.5" fill="#e3b982" stroke="#9b643d" stroke-width="1.5"/>
 </svg>`
 
-    ,
+  ,
 
-    'Mùi': `<svg viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
+  'Mùi': `<svg viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom">
   <g transform="rotate(180, 32, 48)">
     <circle cx="32" cy="48" r="28" fill="#fdf6ed" stroke="#c6a67b" stroke-width="2"/>
 
@@ -295,9 +295,9 @@ export const zodiacSVGs = {
 </svg>
 `
 
-    ,
+  ,
 
-    'Thân': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom" id="avatar-shape">
+  'Thân': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom" id="avatar-shape">
   <g transform="rotate(180, 32, 40)">
     <!-- Đầu khỉ -->
     <circle cx="32" cy="40" r="26" fill="#a05a2c" stroke="#5a2e0d" stroke-width="2"/>
@@ -327,9 +327,9 @@ export const zodiacSVGs = {
   </g>
 </svg>
 `
-    ,
+  ,
 
-    'Dậu': `<svg aria-labelledby="title-rooster" fill="none" role="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom"> 
+  'Dậu': `<svg aria-labelledby="title-rooster" fill="none" role="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class = "avatar-dom"> 
   <title id="title-rooster">Rooster</title>
   <!-- Mặt -->
   <circle cx="32" cy="32" r="30" fill="#fcdc83" stroke="none"/>
@@ -353,7 +353,7 @@ export const zodiacSVGs = {
 </svg>
 `,
 
-    'Tuất': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-dog2" class = "avatar-dom">
+  'Tuất': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-dog2" class = "avatar-dom">
   <title id="title-dog2">Dog Face</title>
   
   <!-- Mặt trắng -->
@@ -386,7 +386,7 @@ export const zodiacSVGs = {
 </svg>
 `,
 
-    'Hợi': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-pig">
+  'Hợi': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-pig">
   <title id="title-pig">Pig Face</title>
   
   <!-- Đầu tròn màu hồng nhạt -->
