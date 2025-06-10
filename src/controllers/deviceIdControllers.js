@@ -4,7 +4,7 @@ async function getOrCreateDeviceId() {
     }).then(result => {
         localStorage.setItem('visitorId', result.visitorId);
         // TODO: gửi visitorId về server
-        window.location.href = "/src/pages/Game/game.html"
+        window.location.href = "../../pages/Game/game.html"
     }).catch(err => {
         console.error('FingerprintJS error', err);
     });
